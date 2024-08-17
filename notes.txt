@@ -1,0 +1,162 @@
+
+link: https://www.youtube.com/watch?v=9kPiq8-i-0M&list=PLC3y8-rFHvwirqe1KHFCHJ0RqNuN61SJd&index=5
+
+Automated test is code that throws an error when the actual output is not equal to expected output
+
+Tech:  React + Typescript
+
+Test Tech: Jest and React Testing library
+
+
+Manual Testing
+
+    An individual will open the website, interact with the website and ensure everything
+    works as intended.
+
+    If a new feature is released, you repeat the same steps
+
+    You may have to test not only the new feature but also the existing features
+
+    Drawbacks:
+        1. Time Consuming
+        2. Complex repetitive tasks has a risk of human error
+        3. If its tight dead line, you may not get a chance to test all the features
+    
+    For avoiding these mistakes Automated testing came
+
+
+Automated Testing
+    Automated tests are programs that automate the task of testing your software 
+    Write code to test the software code
+    Additional effort required when you develop a feature
+
+    Pros:
+        1. Not time Consuming
+        2. Reliable, consitent and not error prone
+        3. Easy to identify and fix features that break tests
+
+
+
+
+Jest Vs React Testing library
+
+Jest:
+    Jest is javascript testing framework
+
+    Jest is a test runner that finds tests, runs the tests, determines whether the tests
+    passed or failed and reports it back in a human readable manner
+
+RTL: 
+    Javascript testing utility that provides virtual DOM for testing React components
+
+    React Testing library provides a virtual DOM which we can use to interact with and
+    and verify the behaviour of react component
+
+    Testing library is infact a family of packages which helps test UI components
+
+    The core library is called DOM Testing library and RTL is simply wrapper around this
+    core library to test React applications in an easier way
+
+
+
+Types of Tests
+    1.Unit tests
+    2.Integration tests
+    3.E2E tests
+
+    Unit tests
+        Focus is on testing the individual building blocks of an application such as a class
+        or a function or a component
+
+        Each unit or building block is tested in isolation, independent of other units
+    
+    Integration tests
+        Focus is on testing a combination of units and ensuring they work together.
+        Take longer than unit tests
+    
+    E2E tests   
+        Focus is on testing the entire application flow and ensuring it works as
+        designed from start to finish
+        Involves in real UI, a real backend database, real services etc
+        Take the longest as they cover the most amount of code
+        Have a cost implication as you interact with real APIs that may charge based on the
+        number of requests.
+
+
+RTL philosophy
+
+    The more your tests resemble the way your software is used, the more confidence they
+    can give you.
+    Tests we are going to learn to write in this series strike a balance between unit tests in
+    the sense they are at a component level and easy to write and maintain and E2E tests in
+    the sense they resemble the way a user would interact with the component.
+    With React Testing library, we are not concerned about the implementation details of about
+    component.
+    Instead we are testing how the component behaves when a user interacts with it.
+    RTL will not care if you add 4+4 or 5+3 to display the number 8
+    Refactoring will not affect your test as long as the end result is the same.    
+
+    Types of tests and RTL
+        1. Unit tests
+        2. Integration tests
+        3. E2E tests
+        4. RTL strikes a balance between unit and E2E tests which is what we will be 
+            learning in the rest of the series
+
+
+
+
+    
+
+creat a ts react project:
+    npx create-react-app . --template typescript
+
+To run Tests
+    npm test
+
+Anatomy of Test
+    In test method
+    test(name, fn, timeout)
+
+    The first argument is the test name used to identify the test
+
+    The second argument is a function that contains the expectations to test
+
+    The third argument is timeout which is an optional argument for specifying how
+    long to wait before aborting the test. The dafult timeout value is 5 seconds
+
+    overview:
+        Ex: App.test.tsx
+        1. Every test begins with test method from Jest, first arg is name
+        2. The second argument is a function that contains the expectations to test
+            1. we use render method from RTL to create a virtual DOM 
+            2. Using screen method from RTL getting the asserted value
+            3. Using the expect method from jest and matcher function(toBeInTheDocument)
+                asserting the values
+
+
+For simple ex test: Greet.tsx and Greet.test.tsx
+
+
+Test Driven Development (TDD) 
+    Test driven development is a software development process where you write tests
+    before writing the software code
+
+    Once the tests have been written, you then write the code to ensure the test pass
+
+    1.  Create tests that verify the functionality of specific feature
+    2. Write software code that will run the tests successfully when re-executed
+    3. Refactor the code for optimization while ensuring the tests continue to pass
+
+    Also called red-green testing as all tests go from a red failed to a green passed state.
+
+
+
+Jest watch mode
+    Watch mode is an option that we can pass to jest asking to watch files that have 
+    changed since the last commit and execute tests related only to those changed
+    files.
+    An optimization designed to make your tests run fast regardless of how many tests
+    you have
+    
+
