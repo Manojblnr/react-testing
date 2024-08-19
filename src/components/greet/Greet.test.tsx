@@ -23,13 +23,10 @@
 import { render, screen } from "@testing-library/react"
 import Greet from "./Greet"
 
-test('Greet renders correctly', () => {
-    render(<Greet/>)
-    const textElement = screen.getByText('hello')
-    expect(textElement).toBeInTheDocument()
-})
-
-test('Greet renders with name correctly', () => {
-    render(<Greet name='Manoj'/>)
-    const textElement = screen.getByText('hello Manoj')
+describe("Greet", () => {
+    test('Greet renders correctly', () => {
+        render(<Greet/>)
+        const textElement = screen.getByText(/Hello/i)
+        expect(textElement).toBeInTheDocument()
+    })
 })

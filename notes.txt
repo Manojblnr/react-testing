@@ -158,5 +158,126 @@ Jest watch mode
     files.
     An optimization designed to make your tests run fast regardless of how many tests
     you have
+
+
+Filtering tests
+    We can filter the tests and can run or skip those tests
+
+    1. run the tests "npm test" and press "w" enter
+        1. Press p to filter by a filename regex pattern.
+        2. Press t to filter by a test name regex pattern.
+
+    2. In test method we can add "only" for run those tests
+       and "skip" for skipping that test
+        EX:  test.only()
+        EX:  test.skip()
+
+
+Grouping Tests
+    describe global method helps to Grouping tests
+
+    describe(name, fn)
+
+    The first argument is the group name
+    The second argument is a function that contains the expectations to test
+
+    In describe we can use only and skip methods too
+
+    can create a multiple nested describe also
+
+    Note: One test file is one Test suite
+
+
+Filename Conventions:
+    Files with .test.js or .test.tsx suffix
+    Files with .spec.js or .spec.tsx suffix
+    Files with .js or .tsx suffix in __tests__ folders
+
+    Recommendation is to always put your tests next to the code they are testing
+    so that relative imports are shorter.
+
+
+Important Note:
+    we can use different methods for same uses
+
+    Methods
+
+    test()          =>      it()
+    test.only()     =>      fit()
+    test.skip()     =>      xit()
     
+
+Code Coverage:
+    A metric that can help you understand how much of your software code is tested
+
+        Statement coverage: how many of the statements in the software code have
+        been executed
+        Branches coverage: how many of the branches of the control structures(if
+        statements for instance) have been executed
+        Function coverage: how many of the functions defined have been called and
+        finally
+        Line coverage: how many of lines of sourcce code have been tested
+
+    
+    In package.json file add a new command
+        "coverage" : "yarn test --coverage --watchAll"
+    
+    Command to Run the test coverage 
+        yarn coverage
+    
+    Then add the collect coverage from, for that in the coverage command
+        "coverage" : "yarn test --coverage --watchAll --collectCoverageFrom='src/components/**/*.{ts,tsx}'"
+    
+    For ignoring the types or other files in the above command modify like this
+        "coverage": "yarn test --coverage --watchAll --collectCoverageFrom='src/components/**/*.{ts,tsx}' --collectCoverageFrom='!src/components/**/*.{types,stories,constants,test,spec}.{ts,tsx}'"
+
+
+    Configuration for jest coverageThreshold:
+    The coverageThreshold configuration in Jest enforces minimum coverage levels.
+
+        "jest": {
+            "coverageThreshold": {
+                "global": {
+                    "branches": 80,
+                    "functions": 80,
+                    "lines": 80,
+                    "statements": -10 
+                }
+            }
+        }
+    
+    1. Branches
+    Definition: Branch coverage measures how many of the possible paths or branches within your code have been executed by your tests.
+
+    2. Functions
+    Definition: Function coverage measures how many of your functions have been called during testing.
+
+    3. Lines
+    Definition: Line coverage measures how many of the lines of code have been executed by your tests.
+
+    4. Statements
+    Definition: Statement coverage is similar to line coverage but considers each individual statement within a line of code.
+
+    We can see the coverage report HTML file 
+        coverage > lcov-report > index.html
+
+
+
+Assertions:
+    When writing tests, we often need to check that values meet certain conditions
+
+    Assertions decide if a test passes or fails
+
+    With Jest assertions are carried out by expect method globally
+
+
+Matchers:
+    link:   https://jestjs.io/docs/using-matchers
+
+
+
+
+
+    
+
 
