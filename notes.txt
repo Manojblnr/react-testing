@@ -1,6 +1,9 @@
 
 link: https://www.youtube.com/watch?v=9kPiq8-i-0M&list=PLC3y8-rFHvwirqe1KHFCHJ0RqNuN61SJd&index=5
 
+Important:  COMPLETED 29 VIDEOS IN THE PLAYLIST STILL 24 VIDEOS LEFT 
+
+
 Automated test is code that throws an error when the actual output is not equal to expected output
 
 Tech:  React + Typescript
@@ -112,7 +115,7 @@ creat a ts react project:
     npx create-react-app . --template typescript
 
 To run Tests
-    npm test
+    npm run test   (or)   yarn test
 
 Anatomy of Test
     In test method
@@ -274,6 +277,135 @@ Assertions:
 Matchers:
     link:   https://jestjs.io/docs/using-matchers
 
+
+What to test?
+    Test component renders
+    Test component renders with props
+    Test component renders in different states
+    Test component reacts to events
+
+What not to test?
+    implementation details
+    Third party code
+    Code that is not Important from a user point of view
+
+
+RTL Queries   // Files : application.tsx and application.test.tsx
+    Every test we write generally involves the following basic steps
+        1. Render the component
+        2. Find an element rendered by the component
+        3. Assert against the element found in step 2 which will pass or fail the test
+
+        To render the component, we use the render method from RTL
+
+        For assertion, we use expect passing in a value and combine it with a matcher
+        function from jest jest-dom
+    
+    For step 2 :  Find an element rendered by the component
+    For that only we will use RTL Queries
+
+    Queries are methods that testing library provides to find element on the page
+        To find a single element on the page, we have
+            1. getBy..
+            2. queryBy..
+            3. findBy..
+
+        To find a multiple element on the page, we have
+            1. getAllBy..
+            2. queryAllBy..
+            3. findAllBy..
+        
+            These are prefix part the .. are suffix
+            The suffix can be one of Role, LabelText, PlaceHolderText, Text, DisplayValue, 
+            AltText, Title and finally TestId
+    
+
+    1. getBy... Queries
+        getBy.. class of queries return the matching node for query, and throw a 
+        descriptive error if no elements of if more than one match is found.
+
+        suffix: Role, LabelText, PlaceHolderText, Text, DisplayValue, 
+                AltText, Title ,TestId
+            
+            1. getByRole
+                getByRole queries for elements with the given role
+
+                Role refers to the ARIA(Accessible Rich Internet Applications) role which provides semantic
+                meaning to content to ensure people using assistive technologies are able to use them.
+
+                Ex:
+                    By default, many semantic elements in HTML have a role
+
+                    Button element has button role, anchor element has a link role, h1 to h6
+                    elements have a heading role, checkboxes have checkbox role, radio buttons
+                    have a radio role and so on
+
+                    If you're working with elements that do not have a default role or if you want to
+                    specify a different role, the role attribute can be used to add the desired role.
+
+                    To use anchor element as button in the navbar, you can add role='button' 
+
+
+                For the ref of HTML roles in React Testing library
+                    link:  https://testing-library.com/docs/queries/byrole
+                    In that open this: table of HTML elements with their default and desired roles.
+                
+                If the component have many same role elements that time need to use options object
+                in the testing.
+
+                name:
+                    The accessible name is for simple cases equal to
+                        1. the label of a form element
+                        2. the text content of a button or
+                        3. the value of the aria-label attribute
+
+                level:
+                    while working with h1 to h6 all role are heading only
+                    for that either we can use name or level options in it
+                
+                Some more options like above
+                    hidden
+                    selected
+                    checked
+                    pressed
+                for understand this check out official docs
+
+
+            2. getByLabelText
+                getByLabelText will search for the label that matches the given text, then
+                find the element asssociated with that label
+
+            Note: If more than one element have same label text
+            Ex: Name label text present in the two places, we can use 
+            "selector" to differentiate it, 
+            like the name should have connect with input selector
+
+ 
+            3. getByPlaceholderText     
+                getByPlaceholderText will search for all elements with the placeholder attribute
+                and find one that matches the given text
+            
+            4. getByText
+                getByText will search for all elements that have a text node with textContent
+                matching the given text
+
+                Typically, you'd use this to find paragraph, div or span elements
+            
+            5. getByDisplayValue
+                getByDisplayValue returns the input, textarea, or select element that has the
+                matching display value
+            
+            6. getByAltText
+                getByAltText will return the element that has the given alt text
+
+                The method only supports elements which accept an alt attribute like <img>, 
+                <input>, <area> or custom HTML elements
+            
+            7. getByTitle
+                getByTitle returns the element that has the matching title attribute
+            
+            8. getByTestId
+                getByTestId return the element that has the matching data-testid attribute
 
 
 

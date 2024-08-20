@@ -1,0 +1,66 @@
+
+
+Priority Order for Queries
+
+    Your test should resemble how users interact with your code (Component, page, etc.)
+    as much as possible
+        
+        1. getByRole
+        2. getByLabelText
+        3. getByPlaceholderText
+        4. getByText
+        5. getByDisplayValue
+        6. getByAltText
+        7. getByTitle
+        8. getByTestId
+
+
+RTL getAllBy Queries    // Files :  skills folder
+
+    Find multiple elements in the DOM
+    getAllBy return an array of all matching nodes for a query, and throws
+    an error if no elements match
+
+        1. getAllByRole
+        2. getAllByLabelText
+        3. getAllByPlaceholderText
+        4. getAllByText
+        5. getAllByDisplayValue
+        6. getAllByAltText
+        7. getAllByTitle
+        8. getAllByTestId
+
+
+
+TextMatch
+    TextMatch represents a type which can be either a
+        string
+        regex
+        function
+    
+    string
+        <div>Hello World<div/>
+
+        screen.getByText("Hello World")   // full string match
+        screen.getByText("llo Worl", {exact: false})   // substring match
+        screen.getByText("hello world", {exact: false})   // ignore case
+    
+    regex
+        <div>Hello World<div/>
+
+        screen.getByText(/World/)   // substring match
+        screen.getByText("/world/i)   // substring match, ignore case
+        screen.getByText(/^hello world$/i)   // full string match, ignore case
+    
+    custom function
+
+        (content?: string, element?: Element | null) => boolean
+
+        <div>Hello World<div/>
+
+        screen.getByText((content) => content.startsWith("Hello"))
+
+
+
+
+
